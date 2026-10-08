@@ -28,9 +28,9 @@ export default function SubmitForm({ lang }: { lang: Lang }) {
   const [errorKey, setErrorKey] = useState("submitFail");
 
   const inputCls =
-    "w-full rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-2.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-orange-500 focus:outline-none";
-  const labelCls = "mb-1 block text-sm font-medium text-zinc-300";
-  const reqMark = <span className="text-orange-500"> *</span>;
+    "w-full rounded-xl border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/15";
+  const labelCls = "mb-1 block text-sm font-medium text-foreground";
+  const reqMark = <span className="text-accent"> *</span>;
 
   function clientError(): string | null {
     if (!name.trim() || !sourceUrl.trim() || !oneLiner.trim()) return "errRequired";
@@ -78,9 +78,9 @@ export default function SubmitForm({ lang }: { lang: Lang }) {
 
   if (status === "success") {
     return (
-      <div className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-8">
-        <p className="text-lg font-bold text-emerald-300">{t(lang, "submitSuccessTitle")}</p>
-        <p className="mt-3 text-sm leading-relaxed text-zinc-300">
+      <div className="rounded-[14px] border border-emerald-200 bg-emerald-50 p-8">
+        <p className="text-lg font-bold text-emerald-700">{t(lang, "submitSuccessTitle")}</p>
+        <p className="mt-3 text-sm leading-relaxed text-emerald-900/80">
           {t(lang, "submitSuccessBody")}
         </p>
       </div>
@@ -135,7 +135,7 @@ export default function SubmitForm({ lang }: { lang: Lang }) {
           required
           className={inputCls}
         />
-        <p className="mt-1 text-right text-xs text-zinc-500">
+        <p className="mt-1 text-right text-xs text-muted-foreground">
           {oneLiner.trim().length} / 200
         </p>
       </div>
@@ -192,7 +192,7 @@ export default function SubmitForm({ lang }: { lang: Lang }) {
       </div>
 
       {status === "error" && (
-        <p className="rounded-lg border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+        <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {t(lang, errorKey)}
         </p>
       )}
@@ -200,7 +200,7 @@ export default function SubmitForm({ lang }: { lang: Lang }) {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="rounded-lg bg-orange-500 px-6 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-orange-400 disabled:opacity-60"
+        className="rounded-xl bg-primary px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark disabled:opacity-60"
       >
         {status === "sending" ? t(lang, "submitSending") : t(lang, "submitSubmit")}
       </button>

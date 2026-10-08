@@ -32,10 +32,10 @@ export default async function AdvertisePage({
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10">
-      <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+      <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
         {t(lang, "advertiseTitle")}
       </h1>
-      <p className="mt-4 max-w-2xl leading-relaxed text-zinc-400">
+      <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
         {t(lang, "advertiseSub")}
       </p>
 
@@ -43,42 +43,42 @@ export default async function AdvertisePage({
         {AD_TIERS.map((tier) => (
           <div
             key={tier.id}
-            className="flex flex-col rounded-xl border border-zinc-800 bg-zinc-900/60 p-5"
+            className="flex flex-col rounded-[14px] border border-border bg-card p-5"
           >
-            <h2 className="text-base font-bold text-zinc-100">
+            <h2 className="text-base font-bold text-foreground">
               {t(lang, `tier${tier.id[0].toUpperCase()}${tier.id.slice(1)}`)}
             </h2>
-            <p className="mt-2 flex-1 text-sm text-zinc-400">
+            <p className="mt-2 flex-1 text-sm text-muted-foreground">
               {t(lang, `tier${tier.id[0].toUpperCase()}${tier.id.slice(1)}Desc`)}
             </p>
             <p className="mt-4">
-              <span className="text-3xl font-extrabold text-orange-400">${tier.price}</span>
-              <span className="text-sm text-zinc-500">
+              <span className="text-3xl font-extrabold text-primary">${tier.price}</span>
+              <span className="text-sm text-muted-foreground">
                 {t(lang, tier.unit === "week" ? "perWeek" : "perIssue")}
               </span>
             </p>
           </div>
         ))}
       </section>
-      <p className="mt-4 text-sm text-zinc-500">🤝 {t(lang, "negotiable")}</p>
+      <p className="mt-4 text-sm text-muted-foreground">🤝 {t(lang, "negotiable")}</p>
 
-      <section className="mt-10 rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
-        <h2 className="text-xl font-bold">{t(lang, "advertiseContact")}</h2>
-        <p className="mt-2 text-sm text-zinc-400">{t(lang, "advertiseContactDesc")}</p>
+      <section className="mt-10 rounded-[14px] border border-border bg-card p-6">
+        <h2 className="text-xl font-bold text-foreground">{t(lang, "advertiseContact")}</h2>
+        <p className="mt-2 text-sm text-muted-foreground">{t(lang, "advertiseContactDesc")}</p>
         <AdvertiseForm lang={lang} contactEmail={CONTACT_EMAIL} />
         {CONTACT_EMAIL ? (
-          <p className="mt-4 text-sm text-zinc-500">
+          <p className="mt-4 text-sm text-muted-foreground">
             {t(lang, "formOpenEmail")}{" "}
-            <a href={`mailto:${CONTACT_EMAIL}`} className="text-orange-400 hover:underline">
+            <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary hover:underline">
               {CONTACT_EMAIL}
             </a>
           </p>
         ) : (
-          <p className="mt-4 rounded-lg border border-dashed border-zinc-700 p-3 text-sm text-zinc-500">
+          <p className="mt-4 rounded-xl border border-dashed border-border p-3 text-sm text-muted-foreground">
             {t(lang, "formOpenEmail")} <span className="font-mono">[contact email TBD]</span>
           </p>
         )}
-        <p className="mt-3 text-xs text-zinc-600">💳 {t(lang, "stripeNote")}</p>
+        <p className="mt-3 text-xs text-muted-foreground/70">💳 {t(lang, "stripeNote")}</p>
       </section>
     </div>
   );

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import "../globals.css";
-import { geistSans, geistMono } from "@/fonts";
+import { figtree } from "@/fonts";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import type { Lang } from "@/content/schema";
@@ -54,9 +54,9 @@ export default async function LangLayout({
   return (
     <html
       lang={l === "zh" ? "zh-CN" : "en"}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${figtree.variable} h-full antialiased`}
     >
-      <body className="flex min-h-screen flex-col">
+      <body className="flex min-h-screen flex-col bg-background text-foreground">
         <Header lang={l} />
         <main id="main" className="flex-1">
           {children}

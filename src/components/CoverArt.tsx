@@ -1,17 +1,17 @@
 // Designed cover art for cases without a real thumbnail (e.g. social posts
-// whose platforms block scraping). Shelf-themed gradient + glyph, so the card
-// looks intentional instead of empty.
+// whose platforms block scraping). Light shelf-themed gradient + glyph, so the
+// card looks intentional instead of empty.
 import type { Shelf } from "@/content/schema";
 import { shelfName } from "@/i18n/dict";
 import type { Lang } from "@/content/schema";
 
-const THEME: Record<Shelf, { emoji: string; from: string; to: string; glow: string }> = {
-  "smart-home": { emoji: "🏠", from: "#064e3b", to: "#022c22", glow: "rgba(52,211,153,.35)" },
-  robots: { emoji: "🤖", from: "#7c2d12", to: "#431407", glow: "rgba(251,146,60,.35)" },
-  wearable: { emoji: "⌚", from: "#4c1d95", to: "#2e1065", glow: "rgba(167,139,250,.35)" },
-  "dev-boards": { emoji: "🔌", from: "#0c4a6e", to: "#082f49", glow: "rgba(56,189,248,.35)" },
-  sensors: { emoji: "📡", from: "#134e4a", to: "#042f2e", glow: "rgba(45,212,191,.35)" },
-  displays: { emoji: "🖥️", from: "#78350f", to: "#451a03", glow: "rgba(251,191,36,.35)" },
+const THEME: Record<Shelf, { emoji: string; from: string; to: string }> = {
+  "smart-home": { emoji: "🏠", from: "#ecfdf5", to: "#d1fae5" },
+  robots: { emoji: "🤖", from: "#fff7ed", to: "#ffedd5" },
+  wearable: { emoji: "⌚", from: "#f5f3ff", to: "#ede9fe" },
+  "dev-boards": { emoji: "🔌", from: "#f0f9ff", to: "#e0f2fe" },
+  sensors: { emoji: "📡", from: "#f0fdfa", to: "#ccfbf1" },
+  displays: { emoji: "🖥️", from: "#fffbeb", to: "#fef3c7" },
 };
 
 export default function CoverArt({
@@ -32,22 +32,17 @@ export default function CoverArt({
     >
       {/* dot grid texture */}
       <div
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 opacity-60"
         style={{
-          backgroundImage: "radial-gradient(rgba(255,255,255,.25) 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(rgba(17,17,18,.08) 1px, transparent 1px)",
           backgroundSize: "18px 18px",
         }}
       />
-      <span
-        className="relative text-6xl"
-        style={{ filter: `drop-shadow(0 0 24px ${t.glow})` }}
-      >
-        {t.emoji}
-      </span>
-      <span className="absolute bottom-2.5 left-3 rounded bg-black/50 px-2 py-0.5 text-[11px] font-medium text-white/80">
+      <span className="relative text-6xl drop-shadow-sm">{t.emoji}</span>
+      <span className="absolute bottom-2.5 left-3 rounded-md bg-white/80 px-2 py-0.5 text-[11px] font-medium text-foreground/80 backdrop-blur-sm">
         {shelfName(shelf, lang)}
       </span>
-      <span className="absolute bottom-2.5 right-3 font-mono text-[11px] text-white/50">
+      <span className="absolute bottom-2.5 right-3 font-mono text-[11px] text-foreground/50">
         №{number}
       </span>
     </div>

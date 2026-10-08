@@ -32,12 +32,12 @@ export default function SubscribeForm({ lang, compact = false }: { lang: Lang; c
     <div>
       {!compact && (
         <>
-          <h2 className="text-2xl font-bold tracking-tight">{t(lang, "newsletterTitle")}</h2>
-          <p className="mt-2 text-sm text-zinc-400">{t(lang, "newsletterSub")}</p>
+          <h2 className="text-2xl font-bold tracking-tight text-foreground">{t(lang, "newsletterTitle")}</h2>
+          <p className="mt-2 text-sm text-muted-foreground">{t(lang, "newsletterSub")}</p>
         </>
       )}
       {state === "ok" ? (
-        <p className="mt-4 rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-300">
+        <p className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
           {t(lang, "subscribeOk")}
         </p>
       ) : (
@@ -51,22 +51,22 @@ export default function SubscribeForm({ lang, compact = false }: { lang: Lang; c
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={t(lang, "emailPlaceholder")}
-            className="w-full flex-1 rounded-lg border border-zinc-700 bg-zinc-900 px-4 py-2.5 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-orange-500 focus:outline-none"
+            className="w-full flex-1 rounded-xl border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/70 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/15"
           />
           <button
             type="submit"
             disabled={state === "loading"}
-            className="rounded-lg bg-orange-500 px-5 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-orange-400 disabled:opacity-60"
+            className="rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark disabled:opacity-60"
           >
             {state === "loading" ? t(lang, "subscribing") : t(lang, "subscribe")}
           </button>
         </form>
       )}
       {state === "invalid" && (
-        <p className="mt-2 text-sm text-red-400">{t(lang, "subscribeInvalid")}</p>
+        <p className="mt-2 text-sm text-red-600">{t(lang, "subscribeInvalid")}</p>
       )}
       {state === "error" && (
-        <p className="mt-2 text-sm text-red-400">{t(lang, "subscribeFail")}</p>
+        <p className="mt-2 text-sm text-red-600">{t(lang, "subscribeFail")}</p>
       )}
     </div>
   );

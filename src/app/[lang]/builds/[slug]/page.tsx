@@ -6,6 +6,7 @@ import { shelfName, t } from "@/i18n/dict";
 import { SITE_URL } from "@/content/config";
 import type { Lang } from "@/content/schema";
 import CaseCard, { SourceBadge } from "@/components/CaseCard";
+import CardCover from "@/components/CardCover";
 import DifficultyStars from "@/components/DifficultyStars";
 
 // Prerender known slugs; if the case list is still empty at build time,
@@ -104,79 +105,92 @@ export default async function BuildPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Link href={`/${lang}`} className="text-sm text-zinc-500 hover:text-orange-400">
-        {t(lang, "detailBack")}
+      <Link href={`/${lang}`} className="text-sm text-muted-foreground hover:text-primary">
+        ← {t(lang, "detailBack")}
       </Link>
 
       <article className="mt-4">
         <div className="flex flex-wrap items-center gap-3">
-          <span className="font-mono text-sm font-bold text-orange-400">
+          <span className="rounded-md bg-accent-soft px-2 py-0.5 font-mono text-sm font-bold text-accent">
             {t(lang, "buildNo")} {c.number}
           </span>
           <SourceBadge type={c.sourceType} lang={lang} />
           <Link
             href={`/${lang}/categories/${c.shelf}`}
-            className="rounded-full border border-zinc-700 px-2.5 py-0.5 text-xs text-zinc-300 hover:border-orange-500/60 hover:text-orange-400"
+            className="rounded-full border border-border bg-muted px-2.5 py-0.5 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
           >
             {shelfName(c.shelf, lang)}
           </Link>
         </div>
 
-        <h1 className="mt-3 text-2xl font-extrabold tracking-tight sm:text-4xl">
+        <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
           {c.title[lang]}
         </h1>
-        <p className="mt-3 text-base leading-relaxed text-zinc-400">{c.summary[lang]}</p>
+        <p className="mt-3 text-base leading-relaxed text-muted-foreground">{c.summary[lang]}</p>
 
-        <p className="mt-4 text-sm text-zinc-500">
-          {t(lang, "by")}{" "}
-          {c.author.url ? (
-            <a
-              href={c.author.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-zinc-300 hover:text-orange-400"
-            >
-              {c.author.name}
-            </a>
+        <div className="mt-5 flex items-center gap-3">
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-soft text-base font-bold text-accent">
+            {(c.author.name || "?").trim().charAt(0).toUpperCase()}
+          </span>
+          <div className="text-sm">
+            <p className="font-medium text-foreground">
+              {c.author.url ? (
+                <a
+                  href={c.author.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-primary hover:underline"
+                >
+                  {c.author.name}
+                </a>
+              ) : (
+                c.author.name
+              )}
+            </p>
+            <p className="text-xs text-muted-foreground">
+              {t(lang, "detailPublished")}: <time dateTime={c.date}>{c.date}</time>
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-6 overflow-hidden rounded-2xl border border-border bg-muted">
+          {c.image ? (
+            <img
+              src={c.image}
+              alt={c.title[lang]}
+              loading="lazy"
+              className="aspect-[16/9] w-full object-cover"
+            />
           ) : (
-            <span className="text-zinc-300">{c.author.name}</span>
-          )}{" "}
-          · {t(lang, "detailPublished")}:{" "}
-          <time dateTime={c.date}>{c.date}</time>
-        </p>
+            <div className="aspect-[16/9] w-full">
+              <CardCover c={c} lang={lang} />
+            </div>
+          )}
+        </div>
 
-        {c.image && (
-          <img
-            src={c.image}
-            alt={c.title[lang]}
-            loading="lazy"
-            className="mt-6 w-full rounded-xl border border-zinc-800 object-cover"
-          />
-        )}
-
-        <div className="prose-sm mt-6 max-w-none text-zinc-300">
-          <p className="leading-relaxed">{c.description[lang]}</p>
+        <div className="mt-6 max-w-none">
+          <p className="leading-relaxed text-foreground/85">{c.description[lang]}</p>
         </div>
 
         {c.quote && (
-          <blockquote className="mt-6 rounded-lg border-l-4 border-orange-500 bg-zinc-900/60 px-5 py-4">
-            <p className="text-sm italic leading-relaxed text-zinc-300">
+          <blockquote className="mt-6 rounded-r-[14px] border-l-4 border-primary bg-muted/60 px-5 py-4">
+            <p className="text-[15px] italic leading-relaxed text-foreground/85">
               “{c.quote[lang]}”
             </p>
-            <cite className="mt-2 block text-xs not-italic text-zinc-500">
+            <cite className="mt-2 block text-xs not-italic text-muted-foreground">
               — {c.quote.by} · {t(lang, "detailQuoteFrom")}
             </cite>
           </blockquote>
         )}
 
         {/* Hardware fields */}
-        <section className="mt-8 rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
-          <h2 className="text-lg font-bold">{t(lang, "detailHardware")}</h2>
+        <section className="mt-8 rounded-[14px] border border-border bg-card p-5 sm:p-6">
+          <h2 className="text-lg font-bold text-foreground">{t(lang, "detailHardware")}</h2>
           <div className="mt-3 flex flex-wrap gap-2">
             {c.hardware.map((h) => (
               <span
                 key={h}
-                className="rounded-md bg-zinc-800 px-2.5 py-1 font-mono text-xs text-zinc-200"
+                className="rounded-md bg-accent-soft px-2.5 py-1 font-mono text-xs font-medium text-accent"
               >
                 {h}
               </span>
@@ -184,30 +198,36 @@ export default async function BuildPage({
           </div>
 
           <div className="mt-4 flex items-center gap-3 text-sm">
-            <span className="text-zinc-400">{t(lang, "detailDifficulty")}:</span>
+            <span className="text-muted-foreground">{t(lang, "detailDifficulty")}:</span>
             <DifficultyStars value={c.difficulty} lang={lang} />
-            <span className="text-xs text-zinc-600">{t(lang, "difficultyHint")}</span>
+            <span className="text-xs text-muted-foreground/70">{t(lang, "difficultyHint")}</span>
           </div>
 
           {c.bom.length > 0 && (
             <>
-              <h3 className="mt-6 text-sm font-bold text-zinc-200">{t(lang, "detailBom")}</h3>
-              <ul className="mt-2 divide-y divide-zinc-800/60 text-sm">
-                {c.bom.map((b, i) => (
-                  <li key={i} className="flex items-center justify-between py-2">
-                    <span className="text-zinc-300">{b.item[lang]}</span>
-                    {b.cost && (
-                      <span className="font-mono text-xs text-orange-400">{b.cost}</span>
-                    )}
-                  </li>
-                ))}
-              </ul>
+              <h3 className="mt-6 text-sm font-bold text-foreground">{t(lang, "detailBom")}</h3>
+              <div className="mt-2 overflow-hidden rounded-xl border border-border">
+                <table className="w-full text-sm">
+                  <tbody>
+                    {c.bom.map((b, i) => (
+                      <tr key={i} className={i % 2 === 1 ? "bg-muted/60" : "bg-card"}>
+                        <td className="px-4 py-2.5 text-foreground/85">{b.item[lang]}</td>
+                        <td className="whitespace-nowrap px-4 py-2.5 text-right">
+                          {b.cost && (
+                            <span className="font-mono text-xs font-medium text-accent">{b.cost}</span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </>
           )}
 
           {c.buyLinks.length > 0 && (
             <>
-              <h3 className="mt-6 text-sm font-bold text-zinc-200">{t(lang, "detailBuy")}</h3>
+              <h3 className="mt-6 text-sm font-bold text-foreground">{t(lang, "detailBuy")}</h3>
               <div className="mt-2 flex flex-wrap gap-2">
                 {c.buyLinks.map((b, i) => (
                   <a
@@ -215,7 +235,7 @@ export default async function BuildPage({
                     href={b.url}
                     target="_blank"
                     rel="noopener noreferrer sponsored"
-                    className="rounded-lg border border-zinc-700 px-3 py-1.5 text-sm text-zinc-200 hover:border-orange-500/60 hover:text-orange-400"
+                    className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
                   >
                     {b.label[lang]} ↗
                   </a>
@@ -225,7 +245,7 @@ export default async function BuildPage({
           )}
 
           {c.officialReference && (
-            <p className="mt-4 text-xs text-zinc-600">
+            <p className="mt-4 text-xs text-muted-foreground/70">
               Meta official reference: {c.officialReference}
             </p>
           )}
@@ -235,15 +255,15 @@ export default async function BuildPage({
           href={c.sourceUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-block rounded-lg bg-orange-500 px-6 py-3 text-sm font-semibold text-zinc-950 hover:bg-orange-400"
+          className="mt-6 inline-block rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
         >
           {t(lang, "detailViewSource")} ↗
         </a>
       </article>
 
       {related.length > 0 && (
-        <section className="mt-12 border-t border-zinc-800/60 pt-8">
-          <h2 className="mb-4 text-xl font-bold">{t(lang, "detailRelated")}</h2>
+        <section className="mt-12 border-t border-border pt-8">
+          <h2 className="mb-4 text-xl font-bold text-foreground">{t(lang, "detailRelated")}</h2>
           <div className="grid gap-5 sm:grid-cols-2">
             {related.map((r) => (
               <CaseCard key={r.slug} c={r} lang={lang} />

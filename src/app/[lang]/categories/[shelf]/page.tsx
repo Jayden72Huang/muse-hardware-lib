@@ -111,29 +111,29 @@ export default async function CategoryPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <p className="font-mono text-xs uppercase tracking-widest text-orange-400">
+      <p className="font-mono text-xs uppercase tracking-widest text-accent">
         {t(lang, "navCategories")}
       </p>
-      <h1 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
+      <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
         {shelfName(shelf, lang)}
       </h1>
-      <p className="mt-4 max-w-3xl leading-relaxed text-zinc-400">
+      <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
         {EDITOR_NOTES[shelf][lang]}
       </p>
 
-      <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
         {cases.map((c) => (
           <CaseCard key={c.slug} c={c} lang={lang} />
         ))}
       </div>
       {cases.length === 0 && (
-        <p className="mt-4 rounded-lg border border-zinc-800 bg-zinc-900/50 p-8 text-center text-sm text-zinc-500">
+        <p className="mt-4 rounded-[14px] border border-border bg-card p-8 text-center text-sm text-muted-foreground">
           {t(lang, "emptyCategory")}
         </p>
       )}
 
-      <section className="mx-auto mt-12 max-w-3xl border-t border-zinc-800/60 pt-8">
-        <h2 className="mb-4 text-xl font-bold">{t(lang, "faqTitle")}</h2>
+      <section className="mx-auto mt-12 max-w-3xl border-t border-border pt-8">
+        <h2 className="mb-4 text-xl font-bold text-foreground">{t(lang, "faqTitle")}</h2>
         <Faq items={faq} lang={lang} />
       </section>
     </div>

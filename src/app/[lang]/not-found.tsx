@@ -5,9 +5,9 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-24 text-center">
-      <p className="font-mono text-6xl font-bold text-zinc-700">404</p>
-      <h1 className="mt-4 text-2xl font-bold">This page doesn&apos;t exist · 这个页面不存在</h1>
-      <p className="mt-2 text-sm text-zinc-500">
+      <p className="font-mono text-6xl font-bold text-border">404</p>
+      <h1 className="mt-4 text-2xl font-bold text-foreground">This page doesn&apos;t exist · 这个页面不存在</h1>
+      <p className="mt-2 text-sm text-muted-foreground">
         The link may be broken, or the build hasn&apos;t landed yet.
         <br />
         链接可能已失效，或者案例还在路上。
@@ -15,13 +15,13 @@ export default function NotFound() {
       <div className="mt-6 flex items-center justify-center gap-3">
         <Link
           href="/en"
-          className="rounded-lg bg-orange-500 px-6 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-orange-400"
+          className="rounded-xl bg-primary px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
         >
           ← All builds
         </Link>
         <Link
           href="/zh"
-          className="rounded-lg border border-zinc-700 px-6 py-2.5 text-sm font-semibold text-zinc-200 hover:border-orange-500/60 hover:text-orange-400"
+          className="rounded-xl border border-border bg-card px-6 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-primary/50 hover:text-primary"
         >
           ← 全部案例
         </Link>
