@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { SHELVES, SOURCE_TYPES, type Lang } from "@/content/schema";
 import { shelfName, typeName, t } from "@/i18n/dict";
-import { CONTACT_EMAIL, SITE_URL, TALLY_FORM_URL } from "@/content/config";
+import { SITE_URL } from "@/content/config";
+import SubmitForm from "@/components/SubmitForm";
 
 export async function generateMetadata({
   params,
@@ -80,36 +81,8 @@ export default async function SubmitPage({
         </ul>
       </section>
 
-      <section className="mt-6">
-        {TALLY_FORM_URL ? (
-          <iframe
-            src={TALLY_FORM_URL}
-            title={t(lang, "submitTitle")}
-            className="h-[720px] w-full rounded-xl border border-zinc-800 bg-zinc-900"
-            loading="lazy"
-          />
-        ) : (
-          <div className="rounded-xl border border-dashed border-orange-500/50 bg-orange-500/5 p-8 text-center">
-            <p className="text-lg font-semibold text-zinc-100">
-              {t(lang, "submitFormSoon")}
-            </p>
-            <p className="mt-2 text-sm text-zinc-400">{t(lang, "submitFormSoonDesc")}</p>
-            {CONTACT_EMAIL && (
-              <p className="mt-3 text-sm text-zinc-300">
-                {t(lang, "submitEmailFallback")}{" "}
-                <a
-                  href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-                    lang === "zh" ? "【投稿】我的 Muse 硬件项目" : "[Submission] My Muse hardware build"
-                  )}`}
-                  className="font-medium text-orange-400 hover:underline"
-                >
-                  {CONTACT_EMAIL}
-                </a>
-                {t(lang, "submitEmailFallbackSuffix")}
-              </p>
-            )}
-          </div>
-        )}
+      <section className="mt-6 rounded-xl border border-zinc-800 bg-zinc-900/50 p-6">
+        <SubmitForm lang={lang} />
       </section>
     </div>
   );

@@ -95,6 +95,25 @@ const en: Dict = {
   stripeNote: "Self-serve Stripe checkout is coming in phase two.",
   langSwitch: "中文",
   skipToContent: "Skip to content",
+  submitProjectName: "Project name",
+  submitSourceUrl: "Source link",
+  submitOneLiner: "One-line intro",
+  submitSourceType: "Source type",
+  submitShelf: "Hardware category",
+  submitContactEmail: "Contact email (optional)",
+  submitSubmit: "Submit",
+  submitSending: "Submitting…",
+  submitSuccessTitle: "Received! 🎉",
+  submitSuccessBody:
+    "Our editors review every submission against the Receipts principle: it must link to a public source. If it passes, we'll write it up bilingually and it goes live with the next deploy — usually within 1–3 days.",
+  submitFail: "Submission failed. Please try again.",
+  errRequired: "Please fill in all required fields.",
+  errBadUrl: "Please enter a valid http(s) URL.",
+  errTooLong: "The one-line intro must be 200 characters or fewer.",
+  errBadType: "Invalid source type.",
+  errBadShelf: "Invalid hardware category.",
+  errBadEmail: "Please enter a valid email address.",
+  errServer: "Something went wrong on our end. Please try again later.",
 };
 
 const zh: Dict = {
@@ -185,6 +204,25 @@ const zh: Dict = {
   stripeNote: "Stripe 自助购买第二期上线。",
   langSwitch: "EN",
   skipToContent: "跳到正文",
+  submitProjectName: "项目名",
+  submitSourceUrl: "来源链接",
+  submitOneLiner: "一句话介绍",
+  submitSourceType: "来源类型",
+  submitShelf: "硬件分类",
+  submitContactEmail: "联系邮箱（选填）",
+  submitSubmit: "提交投稿",
+  submitSending: "提交中…",
+  submitSuccessTitle: "收到啦！🎉",
+  submitSuccessBody:
+    "编辑会按 Receipts 原则审核每条投稿：必须有公开来源链接。审核通过后，我们会做成双语案例，随下次部署上线——一般 1–3 天。",
+  submitFail: "提交失败，请重试。",
+  errRequired: "请填写所有必填项。",
+  errBadUrl: "请输入合法的 http(s) 链接。",
+  errTooLong: "一句话介绍不能超过 200 字。",
+  errBadType: "来源类型不合法。",
+  errBadShelf: "硬件分类不合法。",
+  errBadEmail: "请输入合法的邮箱地址。",
+  errServer: "服务器开小差了，请稍后再试。",
 };
 
 export const SHELF_FAQ: Record<Shelf, { q: LocalText; a: LocalText }[]> = {
