@@ -5,6 +5,7 @@ import { SOURCE_TYPES, type Lang, type SourceType } from "@/content/schema";
 import { typeName, t } from "@/i18n/dict";
 import { SITE_URL } from "@/content/config";
 import CaseCard from "@/components/CaseCard";
+import FilterBar from "@/components/FilterBar";
 
 const TYPES = Object.keys(SOURCE_TYPES) as SourceType[];
 
@@ -64,11 +65,13 @@ export default async function TypePage({
   const cases = getCases().filter((c) => c.sourceType === type);
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10">
+    <div>
+      <FilterBar lang={lang} active={type === "social" ? "social" : "github"} />
+      <div className="mx-auto max-w-6xl px-4 py-10">
       <p className="font-mono text-xs uppercase tracking-widest text-accent">
         {t(lang, "source")}
       </p>
-      <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+      <h1 className="mt-2 text-balance text-[clamp(2rem,4vw,3rem)] font-medium leading-[1.05] tracking-[-0.03em] text-foreground">
         {typeName(type, lang)}
       </h1>
       <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
@@ -84,6 +87,7 @@ export default async function TypePage({
           {t(lang, "emptyType")}
         </p>
       )}
+      </div>
     </div>
   );
 }

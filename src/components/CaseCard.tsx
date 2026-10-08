@@ -2,26 +2,12 @@ import Link from "next/link";
 import { t, typeName, shelfName } from "@/i18n/dict";
 import type { CaseStudy, Lang } from "@/content/schema";
 import CardCover from "./CardCover";
-import DifficultyStars from "./DifficultyStars";
-
-const badgeColor: Record<string, string> = {
-  github: "border-border bg-muted text-foreground",
-  video: "border-red-200 bg-red-50 text-red-700",
-  article: "border-sky-200 bg-sky-50 text-sky-700",
-  social: "border-violet-200 bg-violet-50 text-violet-700",
-};
 
 export function SourceBadge({ type, lang }: { type: CaseStudy["sourceType"]; lang: Lang }) {
-  return (
-    <span
-      className={`inline-block rounded-full border px-2.5 py-0.5 text-xs font-medium ${badgeColor[type]}`}
-    >
-      {typeName(type, lang)}
-    </span>
-  );
+  return <span className="text-xs text-muted-foreground">{typeName(type, lang)}</span>;
 }
 
-const glyphColor: Record<string, string> = {
+const glyphBg: Record<string, string> = {
   github: "bg-foreground",
   video: "bg-red-500",
   article: "bg-sky-500",
@@ -37,10 +23,11 @@ function TypeGlyph({ type }: { type: CaseStudy["sourceType"] }) {
   };
   return (
     <span
-      className={`flex h-4 w-4 items-center justify-center rounded-full text-white ${glyphColor[type]}`}
       aria-hidden
+      style={{ width: 17, height: 17 }}
+      className={`absolute -bottom-0.5 -right-0.5 grid place-items-center rounded-full text-white ring-2 ring-card ${glyphBg[type]}`}
     >
-      <svg width="9" height="9" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
         {paths[type]}
       </svg>
     </span>
@@ -58,77 +45,72 @@ function sourceDomain(url: string): string {
 export default function CaseCard({ c, lang }: { c: CaseStudy; lang: Lang }) {
   const initial = (c.author.name || "?").trim().charAt(0).toUpperCase();
   return (
-    <article className="case-card group relative flex flex-col overflow-hidden rounded-[14px] border border-border bg-card">
-      {/* author row */}
-      <div className="flex items-center gap-3 px-4 pt-4">
-        <div className="relative h-10 w-10 shrink-0">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-soft text-lg font-bold text-accent">
-            {initial}
-          </span>
-          <span className="absolute -bottom-0.5 -right-0.5">
+    <article className="group relative flex flex-col overflow-hidden rounded-[1.25rem] border border-border bg-card transition-[box-shadow,border-color] duration-200 hover:border-foreground/25 hover:shadow-md">
+      <div className="px-3 pb-3 pt-3">
+        {/* author row */}
+        <div className="flex items-center gap-3">
+          <span className="relative shrink-0" style={{ width: 40, height: 40 }}>
+            <span
+              className="grid place-items-center rounded-full bg-accent-soft text-sm font-bold text-accent"
+              style={{ width: 40, height: 40 }}
+            >
+              {initial}
+            </span>
             <TypeGlyph type={c.sourceType} />
           </span>
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-[15px] font-medium text-foreground">
+              {c.author.name}
+            </p>
+            <p className="truncate text-xs text-muted-foreground">
+              @{c.author.name} · {sourceDomain(c.sourceUrl)}
+            </p>
+          </div>
+          <a
+            href={c.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={t(lang, "detailViewSource")}
+            className="relative z-10 rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <path d="M7 7h10v10" />
+              <path d="M7 17 17 7" />
+            </svg>
+          </a>
         </div>
-        <div className="min-w-0 flex-1">
-          <p className="truncate text-[15px] font-medium text-foreground">
-            {c.author.name}
-          </p>
-          <p className="truncate text-xs text-muted-foreground">
-            @{c.author.name} · {sourceDomain(c.sourceUrl)}
-          </p>
+
+        {/* summary */}
+        <p className="mt-3 text-[15px] leading-[1.45] text-foreground/90">
+          {c.summary[lang]}
+        </p>
+
+        {/* cover */}
+        <div className="relative mt-3 overflow-hidden rounded-xl border border-border bg-muted">
+          <div className="aspect-[16/10] w-full">
+            <CardCover c={c} lang={lang} />
+          </div>
         </div>
-        <a
-          href={c.sourceUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={t(lang, "detailViewSource")}
-          className="relative z-10 rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
-        >
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden>
-            <path d="M6 3H3v10h10v-3M9 3h4v4M13 3L7.5 8.5" />
-          </svg>
-        </a>
       </div>
 
-      {/* title + summary */}
-      <div className="px-4 pt-3">
-        <h3 className="text-[15px] font-semibold leading-snug tracking-[-0.01em] text-foreground transition-colors group-hover:text-primary">
-          <Link href={`/${lang}/builds/${c.slug}`} className="stretched-link">
+      {/* meta bar + title */}
+      <div className="mx-3 mb-3 rounded-2xl bg-muted px-3 py-2.5">
+        <div className="flex items-center gap-2">
+          <p className="min-w-0 flex-1 truncate text-xs text-muted-foreground">
+            {typeName(c.sourceType, lang)} · {shelfName(c.shelf, lang)}
+          </p>
+          <span className="rounded-md bg-accent-soft px-1.5 py-0.5 font-mono text-[11px] font-bold text-accent">
+            № {c.number}
+          </span>
+        </div>
+        <h3 className="mt-1.5 text-[15px] font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
+          <Link
+            href={`/${lang}/builds/${c.slug}`}
+            className="stretched-link after:absolute after:inset-0 after:rounded-[1.25rem] focus-visible:outline-none"
+          >
             {c.title[lang]}
           </Link>
         </h3>
-        <p className="mt-1.5 line-clamp-2 text-[15px] leading-[1.45] text-foreground/80">
-          {c.summary[lang]}
-        </p>
-      </div>
-
-      {/* cover */}
-      <div className="px-4 pt-3">
-        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-border bg-muted">
-          <CardCover c={c} lang={lang} />
-        </div>
-      </div>
-
-      {/* meta row */}
-      <div className="flex flex-wrap items-center gap-x-2.5 gap-y-2 px-4 py-4">
-        <span className="rounded-md bg-accent-soft px-1.5 py-0.5 font-mono text-[11px] font-bold text-accent">
-          № {c.number}
-        </span>
-        <Link
-          href={`/${lang}/categories/${c.shelf}`}
-          className="relative z-10 rounded-full border border-border bg-muted px-2.5 py-0.5 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
-        >
-          {shelfName(c.shelf, lang)}
-        </Link>
-        <DifficultyStars value={c.difficulty} lang={lang} />
-        {c.hardware.slice(0, 2).map((h) => (
-          <span
-            key={h}
-            className="rounded border border-border bg-background px-1.5 py-0.5 text-[11px] text-muted-foreground"
-          >
-            {h}
-          </span>
-        ))}
       </div>
     </article>
   );

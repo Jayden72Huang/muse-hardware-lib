@@ -123,7 +123,7 @@ export default async function BuildPage({
           </Link>
         </div>
 
-        <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+        <h1 className="mt-4 max-w-[20ch] text-balance text-[40px] font-medium leading-[1.05] tracking-[-0.03em] text-foreground">
           {c.title[lang]}
         </h1>
         <p className="mt-3 text-base leading-relaxed text-muted-foreground">{c.summary[lang]}</p>

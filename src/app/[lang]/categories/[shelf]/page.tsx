@@ -6,6 +6,7 @@ import { SHELF_FAQ, shelfName, t } from "@/i18n/dict";
 import { SITE_URL } from "@/content/config";
 import CaseCard from "@/components/CaseCard";
 import Faq from "@/components/Faq";
+import FilterBar from "@/components/FilterBar";
 
 const SHELVES_LIST = Object.keys(SHELVES) as Shelf[];
 
@@ -106,7 +107,9 @@ export default async function CategoryPage({
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10">
+    <div>
+      <FilterBar lang={lang} active={shelf} />
+      <div className="mx-auto max-w-6xl px-4 py-10">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
@@ -114,7 +117,7 @@ export default async function CategoryPage({
       <p className="font-mono text-xs uppercase tracking-widest text-accent">
         {t(lang, "navCategories")}
       </p>
-      <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+      <h1 className="mt-2 text-balance text-[clamp(2rem,4vw,3rem)] font-medium leading-[1.05] tracking-[-0.03em] text-foreground">
         {shelfName(shelf, lang)}
       </h1>
       <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
@@ -136,6 +139,7 @@ export default async function CategoryPage({
         <h2 className="mb-4 text-xl font-bold text-foreground">{t(lang, "faqTitle")}</h2>
         <Faq items={faq} lang={lang} />
       </section>
+      </div>
     </div>
   );
 }

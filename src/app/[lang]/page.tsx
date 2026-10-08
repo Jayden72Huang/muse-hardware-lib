@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { getCases } from "@/content/cases";
 import type { CaseStudy } from "@/content/schema";
 import { t } from "@/i18n/dict";
@@ -6,6 +5,7 @@ import type { Lang } from "@/content/schema";
 import CaseCard from "@/components/CaseCard";
 import SponsoredCard from "@/components/SponsoredCard";
 import SubscribeForm from "@/components/SubscribeForm";
+import FilterBar from "@/components/FilterBar";
 import { CategoryNav } from "@/components/Header";
 
 import { SITE_URL } from "@/content/config";
@@ -65,35 +65,26 @@ export default async function HomePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* Hero — compact strip */}
-      <section className="border-b border-border bg-card">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:py-10">
-          <div className="max-w-2xl">
-            <p className="inline-block rounded-full border border-primary/25 bg-primary/5 px-3 py-1 text-xs font-medium text-primary">
-              {t(lang, "heroKicker")}
-            </p>
-            <h1 className="mt-3 text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
-              {t(lang, "heroTitle")}
-            </h1>
-            <p className="mt-2 text-[15px] text-muted-foreground">{t(lang, "heroSub")}</p>
-          </div>
-          <Link
-            href={`/${lang}/submit`}
-            className="inline-flex shrink-0 items-center justify-center rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
-          >
-            {t(lang, "navSubmit")} →
-          </Link>
+      {/* Hero — big-number headline, compact */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-[1680px] px-3 py-10 sm:px-6 sm:py-14">
+          <h1 className="max-w-[18ch] text-balance text-[clamp(2.5rem,5vw,4rem)] font-medium leading-[1] tracking-[-0.03em] text-foreground">
+            <span className="tabular-nums">{cases.length}</span>{" "}
+            {t(lang, "heroPre")}{" "}
+            <span className="text-primary">{t(lang, "heroMuse")}</span>
+            {t(lang, "heroPost") ? ` ${t(lang, "heroPost")}` : ""}
+          </h1>
+          <p className="mt-4 max-w-[52ch] text-[15px] leading-[1.5] text-muted-foreground">
+            {t(lang, "heroSub")}
+          </p>
         </div>
       </section>
 
+      {/* Sticky filter bar — the directory */}
+      <FilterBar lang={lang} active="all" />
+
       {/* Feed */}
-      <section className="mx-auto max-w-6xl px-4 py-10">
-        <div className="mb-6 flex items-center justify-between">
-          <h2 className="text-xl font-bold text-foreground">{t(lang, "latestBuilds")}</h2>
-          <Link href={`/${lang}/submit`} className="text-sm text-primary hover:underline">
-            {t(lang, "navSubmit")} →
-          </Link>
-        </div>
+      <section id="main" className="mx-auto max-w-[1680px] px-3 py-8 sm:px-6">
         {cases.length > 0 ? (
           <Feed items={cases} lang={lang} />
         ) : (
@@ -105,7 +96,7 @@ export default async function HomePage({
 
       {/* Categories */}
       <section className="border-t border-border bg-card">
-        <div className="mx-auto max-w-6xl px-4 py-10">
+        <div className="mx-auto max-w-[1680px] px-3 py-10 sm:px-6">
           <h2 className="mb-4 text-xl font-bold text-foreground">{t(lang, "browseCategories")}</h2>
           <CategoryNav lang={lang} />
         </div>
