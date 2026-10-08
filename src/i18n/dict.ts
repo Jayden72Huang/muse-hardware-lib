@@ -69,6 +69,8 @@ const en: Dict = {
   submitFormSoon: "Submission form launching soon",
   submitFormSoonDesc:
     "We're wiring up the form. Meanwhile, send your link to the contact email below.",
+  submitEmailFallback: "In a hurry? Email us directly at",
+  submitEmailFallbackSuffix: "with your project link and a one-line intro.",
   advertiseTitle: "Advertise to hardware makers",
   advertiseSub:
     "Your product in front of people who actually solder. Transparent rates, no auctions, no dark patterns.",
@@ -159,6 +161,8 @@ const zh: Dict = {
   submitStd4: "聚焦硬件：必须跑在真实物理设备上。",
   submitFormSoon: "投稿表单即将上线",
   submitFormSoonDesc: "表单正在接入中。你可以先把链接发到下面的联系邮箱。",
+  submitEmailFallback: "着急投稿？直接发邮件到",
+  submitEmailFallbackSuffix: "，附上项目链接+一句话介绍。",
   advertiseTitle: "向硬件玩家推广",
   advertiseSub: "你的产品，直接触达真正会拿起电烙铁的人。明码标价，无暗拍、无套路。",
   tierFeed: "信息流原生广告位",

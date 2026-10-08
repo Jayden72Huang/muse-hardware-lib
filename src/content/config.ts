@@ -5,8 +5,9 @@ export const SITE_URL =
 /** Tally form embed URL for /submit. Empty => placeholder block is shown. */
 export const TALLY_FORM_URL = process.env.NEXT_PUBLIC_TALLY_FORM_URL || "";
 
-/** Contact email for /advertise inquiries. Empty => mailto placeholder. */
-export const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "";
+/** Contact email for /advertise inquiries and /submit fallback. */
+export const CONTACT_EMAIL =
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL || "Jayden@inflowx.ai";
 
 export const AD_TIERS = [
   { id: "feed", price: 99, unit: "week" },

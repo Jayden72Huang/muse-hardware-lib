@@ -95,13 +95,17 @@ export default async function SubmitPage({
             </p>
             <p className="mt-2 text-sm text-zinc-400">{t(lang, "submitFormSoonDesc")}</p>
             {CONTACT_EMAIL && (
-              <p className="mt-3 text-sm">
+              <p className="mt-3 text-sm text-zinc-300">
+                {t(lang, "submitEmailFallback")}{" "}
                 <a
-                  href={`mailto:${CONTACT_EMAIL}`}
+                  href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+                    lang === "zh" ? "【投稿】我的 Muse 硬件项目" : "[Submission] My Muse hardware build"
+                  )}`}
                   className="font-medium text-orange-400 hover:underline"
                 >
                   {CONTACT_EMAIL}
                 </a>
+                {t(lang, "submitEmailFallbackSuffix")}
               </p>
             )}
           </div>
