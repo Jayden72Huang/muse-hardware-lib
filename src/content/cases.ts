@@ -9,6 +9,7 @@ import type { CaseStudy } from "./schema";
 export const CASES: CaseStudy[] = [
   {
     slug: "ha-muse-stt",
+  image: "https://opengraph.githubassets.com/12e50c329aae547b150361185cdc1db9d31af278a2652dfe558f3789d538902b/zraken/ha-muse-stt",
     number: "0001",
     shelf: "smart-home",
     sourceType: "github",
@@ -165,6 +166,7 @@ export const CASES: CaseStudy[] = [
   },
   {
     slug: "musechan",
+  image: "https://opengraph.githubassets.com/22cfcd780f9a8337ca695f027b14c2d0e1546d7657e3aa92e5d9108864398f42/Tjtelenda/musechan",
     number: "0005",
     shelf: "robots",
     sourceType: "github",
@@ -209,6 +211,7 @@ export const CASES: CaseStudy[] = [
   },
   {
     slug: "muse-pocket",
+  image: "https://opengraph.githubassets.com/99712559b8fc0a15decfe724f980d2ac8f3a44406526a6af02bc253b987a090f/viticci/muse-pocket",
     number: "0006",
     shelf: "displays",
     sourceType: "github",
@@ -253,6 +256,7 @@ export const CASES: CaseStudy[] = [
   },
   {
     slug: "muse-r1",
+  image: "https://opengraph.githubassets.com/a7a06a7ab5abb218997afdd0f48d9b7235bbfa038a3ec3ec2f07e64d5fb4d7c4/cameronapak/muse-r1",
     number: "0007",
     shelf: "dev-boards",
     sourceType: "github",
@@ -296,6 +300,7 @@ export const CASES: CaseStudy[] = [
   },
   {
     slug: "muse-gadget-xiaozhi",
+  image: "https://opengraph.githubassets.com/986b86f424b6b409cd0601889fd060c341aeedf6c1a44d7105de885ed6f5ec4e/moerdowo/muse-gadget-xiaozhi",
     number: "0008",
     shelf: "dev-boards",
     sourceType: "github",
@@ -334,6 +339,7 @@ export const CASES: CaseStudy[] = [
   },
   {
     slug: "muse-ai-passport",
+  image: "https://opengraph.githubassets.com/85d9129500b05fab21c498c47b4428eced21f45ba4655b13cbf0d6909e269be9/timzenxia/muse-ai-passport",
     number: "0009",
     shelf: "wearable",
     sourceType: "github",
@@ -372,6 +378,7 @@ export const CASES: CaseStudy[] = [
   },
   {
     slug: "homeassistant-addon-muse-gadget",
+  image: "https://opengraph.githubassets.com/043a83bdec22e797959e8aa90eefc82d65e4adfddbb9ec24b7af170d6e91cf54/Josh-Archer/homeassistant-addon-muse-gadget",
     number: "0010",
     shelf: "smart-home",
     sourceType: "github",
@@ -416,6 +423,7 @@ export const CASES: CaseStudy[] = [
   },
   {
     slug: "muse-arr",
+  image: "https://opengraph.githubassets.com/9057ea6633932094c771aadfab8bdd6a773304ae35fd35f3d94355cae1c4aeb6/vocino/muse-arr",
     number: "0011",
     shelf: "smart-home",
     sourceType: "github",
@@ -459,6 +467,7 @@ export const CASES: CaseStudy[] = [
   },
   {
     slug: "muse-gadget-core2",
+  image: "https://opengraph.githubassets.com/a570f351c353df50c3ba29b825edd5255393b8b8c5ea9b6aef8ead5442273788/crims0n/muse-gadget-core2",
     number: "0012",
     shelf: "dev-boards",
     sourceType: "github",
@@ -492,6 +501,7 @@ export const CASES: CaseStudy[] = [
   },
   {
     slug: "muse-gadget-sdk-community-fork",
+  image: "https://opengraph.githubassets.com/6e51d8e4eb0cc655c5c0e0022022e28d5c2a5b9d6edacc8ee368454ea212a2da/ledienbien-ai/muse-gadget-sdk",
     number: "0013",
     shelf: "dev-boards",
     sourceType: "github",
@@ -530,6 +540,7 @@ export const CASES: CaseStudy[] = [
   },
   {
     slug: "waveshare-muse-gadget-sdk",
+  image: "https://opengraph.githubassets.com/48232458cff5cf0bc21a573be39ebd6e68ed304e036b8475f4c6ec3ad66ea35e/wupsbr/waveshare-muse-gadget-sdk",
     number: "0014",
     shelf: "dev-boards",
     sourceType: "github",
@@ -584,6 +595,7 @@ export const CASES: CaseStudy[] = [
   },
   {
     slug: "muse-gadget-c6-n16",
+  image: "https://opengraph.githubassets.com/ec23a92aa361ba9aea0ae94f198aca7e48b2f66672681bb6dd587e5f1ead1c53/assix/muse-gadget-c6-n16",
     number: "0015",
     shelf: "dev-boards",
     sourceType: "github",
@@ -621,6 +633,7 @@ export const CASES: CaseStudy[] = [
   },
   {
     slug: "esp32-muse-agent",
+  image: "https://opengraph.githubassets.com/57c438c46049bf1432aa8de05cb78a86dfcd3f85fb2566a3874c3e46520ec1fd/JJenglert1/esp32-muse-agent",
     number: "0016",
     shelf: "dev-boards",
     sourceType: "github",
@@ -665,6 +678,7 @@ export const CASES: CaseStudy[] = [
   },
   {
     slug: "muse-gadget-psp",
+  image: "https://opengraph.githubassets.com/66a3c243bfcffe56c8a22a303281f109531457e895555d98c853a530f44037d6/wobsoriano/muse-gadget-psp",
     number: "0017",
     shelf: "dev-boards",
     sourceType: "github",
