@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #090b10;
+  color: #e8eaf0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #ff6b2c;
+  color: #090b10;
+}
+
+/* subtle card hover lift */
+.case-card {
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+.case-card:hover {
+  transform: translateY(-2px);
+}
+
+/* FAQ details marker */
+details.faq > summary {
+  cursor: pointer;
+  list-style: none;
+}
+details.faq > summary::-webkit-details-marker {
+  display: none;
+}
+details.faq > summary::after {
+  content: "+";
+  float: right;
+  color: #ff6b2c;
+  font-weight: 700;
+}
+details.faq[open] > summary::after {
+  content: "–";
+}
