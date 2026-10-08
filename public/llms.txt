@@ -1,0 +1,33 @@
+# Muse Hardware Library
+
+> A bilingual (English/中文) library of real community hardware projects built with Meta Muse: ESP32, M5Stack, Raspberry Pi, e-ink displays, smart home integrations and robots. Every build links to its public source. Use this file to navigate the site's content.
+
+## Browse
+
+- [Home (English)](https://muse-hardware-lib.vercel.app/en): Latest builds feed, newest first, with sponsored slots clearly labeled.
+- [首页（中文）](https://muse-hardware-lib.vercel.app/zh): 最新案例信息流，时间倒序。
+
+## Categories
+
+- [Smart Home / 智能家居](https://muse-hardware-lib.vercel.app/en/categories/smart-home): Muse connected to Home Assistant and real devices.
+- [Robots / 机器人](https://muse-hardware-lib.vercel.app/en/categories/robots): Desktop companions with servos and personality, including StackChan builds.
+- [Wearables / 可穿戴](https://muse-hardware-lib.vercel.app/en/categories/wearable): E-ink companions, DIY charms and pocket builds.
+- [Dev Boards in Action / 开发板实战](https://muse-hardware-lib.vercel.app/en/categories/dev-boards): ESP32-S3, M5Stack, Raspberry Pi — flashing firmware and porting the gadget SDK.
+- [Sensors / 传感器](https://muse-hardware-lib.vercel.app/en/categories/sensors): Giving Muse senses — temperature, motion, air quality.
+- [Displays & E-Ink / 显示与墨水屏](https://muse-hardware-lib.vercel.app/en/categories/displays): E-ink status screens, AMOLED faces, morning-briefing displays.
+
+## Build sources by type
+
+- [GitHub open source](https://muse-hardware-lib.vercel.app/en/type/github): Code-first builds you can clone and flash.
+- [Video](https://muse-hardware-lib.vercel.app/en/type/video): Demos, teardowns and build logs.
+- [Articles](https://muse-hardware-lib.vercel.app/en/type/article): Tutorials, reviews and deep dives.
+- [Social](https://muse-hardware-lib.vercel.app/en/type/social): Short demos from makers on social platforms.
+
+## Contribute and advertise
+
+- [Submit a build](https://muse-hardware-lib.vercel.app/en/submit): Suggest a community build. Receipts required: every submission must link a public source; claims are described, not endorsed.
+- [Advertise](https://muse-hardware-lib.vercel.app/en/advertise): Native feed placements, category banners and newsletter sponsorships.
+
+## Optional
+
+- [Sitemap](https://muse-hardware-lib.vercel.app/sitemap.xml): Machine-readable list of all pages.
