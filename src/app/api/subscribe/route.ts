@@ -1,11 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { appendFile, mkdir } from "node:fs/promises";
-import { join } from "node:path";
+import { resendConfigured, resendPost } from "@/lib/resend";
+import { RESEND_AUDIENCE_ID } from "@/content/config";
 
-// Phase 1: validate + persist to data/subscribers.jsonl (gitignored).
-// Phase 2: switch to Resend Audiences/Contacts API (API key already available).
-//   POST https://api.resend.com/audiences/{audience_id}/contacts
-//   { "email": ..., "unsubscribed": false }
+// Newsletter subscribe → Resend audience "Muse Hardware Library".
+// Duplicate emails are treated as success (idempotent subscribe).
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -20,23 +18,21 @@ export async function POST(req: NextRequest) {
     typeof (body as { email?: unknown }).email === "string"
       ? (body as { email: string }).email.trim().toLowerCase()
       : "";
-  const lang =
-    (body as { lang?: unknown }).lang === "zh" ? "zh" : "en";
 
   if (!EMAIL_RE.test(email) || email.length > 254) {
     return NextResponse.json({ ok: false, error: "invalid_email" }, { status: 400 });
   }
-
-  try {
-    const dir = join(process.cwd(), "data");
-    await mkdir(dir, { recursive: true });
-    await appendFile(
-      join(dir, "subscribers.jsonl"),
-      JSON.stringify({ email, lang, ts: new Date().toISOString() }) + "\n",
-      "utf8"
-    );
-  } catch {
-    return NextResponse.json({ ok: false, error: "persist_failed" }, { status: 500 });
+  if (!resendConfigured()) {
+    return NextResponse.json({ ok: false, error: "err_config" }, { status: 503 });
   }
-  return NextResponse.json({ ok: true });
+
+  const r = await resendPost(`/audiences/${RESEND_AUDIENCE_ID}/contacts`, {
+    email,
+    unsubscribed: false,
+  });
+  // 409 = already in audience → still a success from the user's view
+  if (r.ok || r.status === 409) {
+    return NextResponse.json({ ok: true });
+  }
+  return NextResponse.json({ ok: false, error: "err_server" }, { status: 502 });
 }

@@ -113,6 +113,7 @@ const en: Dict = {
   errBadType: "Invalid source type.",
   errBadShelf: "Invalid hardware category.",
   errBadEmail: "Please enter a valid email address.",
+  errConfig: "Submission service is being configured — please email us directly for now.",
   errServer: "Something went wrong on our end. Please try again later.",
 };
 
@@ -222,6 +223,7 @@ const zh: Dict = {
   errBadType: "来源类型不合法。",
   errBadShelf: "硬件分类不合法。",
   errBadEmail: "请输入合法的邮箱地址。",
+  errConfig: "投稿服务配置中，请先直接发邮件投稿。",
   errServer: "服务器开小差了，请稍后再试。",
 };
 

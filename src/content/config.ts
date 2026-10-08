@@ -9,6 +9,11 @@ export const TALLY_FORM_URL = process.env.NEXT_PUBLIC_TALLY_FORM_URL || "";
 export const CONTACT_EMAIL =
   process.env.NEXT_PUBLIC_CONTACT_EMAIL || "Jayden@inflowx.ai";
 
+/** Resend audience id for the newsletter ("Muse Hardware Library"). Not secret. */
+export const RESEND_AUDIENCE_ID =
+  process.env.NEXT_PUBLIC_RESEND_AUDIENCE_ID ||
+  "ce836590-b3b1-49f7-8705-1a72b95b41ec";
+
 export const AD_TIERS = [
   { id: "feed", price: 99, unit: "week" },
   { id: "banner", price: 149, unit: "week" },
