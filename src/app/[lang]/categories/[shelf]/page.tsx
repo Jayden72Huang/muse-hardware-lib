@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { getCases } from "@/content/cases";
 import { SHELVES, type Lang, type Shelf } from "@/content/schema";
 import { SHELF_FAQ, shelfName, t } from "@/i18n/dict";
@@ -7,6 +8,7 @@ import { SITE_URL } from "@/content/config";
 import CaseCard from "@/components/CaseCard";
 import Faq from "@/components/Faq";
 import FilterBar from "@/components/FilterBar";
+import Sidebar from "@/components/Sidebar";
 
 const SHELVES_LIST = Object.keys(SHELVES) as Shelf[];
 
@@ -108,38 +110,59 @@ export default async function CategoryPage({
 
   return (
     <div>
-      <FilterBar lang={lang} active={shelf} />
-      <div className="mx-auto max-w-6xl px-4 py-10">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      <p className="font-mono text-xs uppercase tracking-widest text-accent">
-        {t(lang, "navCategories")}
-      </p>
-      <h1 className="mt-2 text-balance text-[clamp(2rem,4vw,3rem)] font-medium leading-[1.05] tracking-[-0.03em] text-foreground">
-        {shelfName(shelf, lang)}
-      </h1>
-      <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
-        {EDITOR_NOTES[shelf][lang]}
-      </p>
 
-      <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-        {cases.map((c) => (
-          <CaseCard key={c.slug} c={c} lang={lang} />
-        ))}
-      </div>
-      {cases.length === 0 && (
-        <p className="mt-4 rounded-[14px] border border-border bg-card p-8 text-center text-sm text-muted-foreground">
-          {t(lang, "emptyCategory")}
+      {/* Title block: breadcrumb → H1 → intro (above the filter bar) */}
+      <div className="mx-auto max-w-[1680px] px-3 pt-8 sm:px-6 sm:pt-10">
+        <nav aria-label="breadcrumb" className="flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+          <Link href={`/${lang}`} className="transition-colors hover:text-foreground">
+            {t(lang, "catalogCrumb")}
+          </Link>
+          <span aria-hidden>/</span>
+          <span className="text-accent">{t(lang, "categoryCrumb")}</span>
+        </nav>
+        <h1 className="mt-2 max-w-[16ch] text-balance text-[clamp(2rem,4vw,3rem)] font-medium leading-[1.05] tracking-[-0.03em] text-foreground">
+          {shelfName(shelf, lang)}
+        </h1>
+        <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
+          {EDITOR_NOTES[shelf][lang]}
         </p>
-      )}
+      </div>
 
-      <section className="mx-auto mt-12 max-w-3xl border-t border-border pt-8">
+      <FilterBar lang={lang} active={shelf} />
+
+      <div className="mx-auto max-w-[1680px] px-3 py-8 sm:px-6">
+        <div className="lg:grid lg:grid-cols-[230px_minmax(0,1fr)] lg:gap-10">
+          <aside className="hidden lg:block">
+            <Sidebar lang={lang} activeShelf={shelf} />
+          </aside>
+          <div id="main">
+            <p className="mb-4 text-sm text-muted-foreground">
+              <span className="font-medium tabular-nums text-foreground">{cases.length}</span>{" "}
+              {t(lang, "buildsUnit")}
+            </p>
+            {cases.length > 0 ? (
+              <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                {cases.map((c) => (
+                  <CaseCard key={c.slug} c={c} lang={lang} />
+                ))}
+              </div>
+            ) : (
+              <p className="rounded-[14px] border border-border bg-card p-8 text-center text-sm text-muted-foreground">
+                {t(lang, "emptyCategory")}
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <section className="mx-auto mt-4 max-w-3xl px-4 pb-12">
         <h2 className="mb-4 text-xl font-bold text-foreground">{t(lang, "faqTitle")}</h2>
         <Faq items={faq} lang={lang} />
       </section>
-      </div>
     </div>
   );
 }

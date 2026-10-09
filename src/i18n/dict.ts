@@ -120,6 +120,23 @@ const en: Dict = {
   errBadEmail: "Please enter a valid email address.",
   errConfig: "Submission service is being configured — please email us directly for now.",
   errServer: "Something went wrong on our end. Please try again later.",
+  allBuilds: "All builds",
+  typesLabel: "Types",
+  buildsUnit: "builds",
+  catalogCrumb: "Catalog",
+  categoryCrumb: "Category",
+  typeCrumb: "Type",
+  sponsorsTitle: "Sponsors",
+  openSlot: "Open slot",
+  addYours: "Add yours from $99/week",
+  browseBuilds: "Browse builds",
+  officialResources: "Official resources",
+  officialGadgetsTitle: "Muse Gadgets",
+  officialGadgetsDesc:
+    "Meta's official open-source hardware page — ESP32 boards, Raspberry Pi builds, SDK tokens.",
+  officialSdkTitle: "Gadget SDK on GitHub",
+  officialSdkDesc:
+    "facebookincubator/muse-gadget-sdk — ESP32 + Linux device SDKs, Apache 2.0.",
 };
 
 const zh: Dict = {
@@ -235,6 +252,23 @@ const zh: Dict = {
   errBadEmail: "请输入合法的邮箱地址。",
   errConfig: "投稿服务配置中，请先直接发邮件投稿。",
   errServer: "服务器开小差了，请稍后再试。",
+  allBuilds: "全部案例",
+  typesLabel: "类型",
+  buildsUnit: "个案例",
+  catalogCrumb: "目录",
+  categoryCrumb: "分类",
+  typeCrumb: "类型",
+  sponsorsTitle: "赞助商",
+  openSlot: "虚位以待",
+  addYours: "从 $99/周起加入",
+  browseBuilds: "浏览案例",
+  officialResources: "官方资源",
+  officialGadgetsTitle: "Muse Gadgets",
+  officialGadgetsDesc:
+    "Meta 官方开源硬件页面 —— ESP32 开发板、树莓派方案、SDK token。",
+  officialSdkTitle: "GitHub 上的 Gadget SDK",
+  officialSdkDesc:
+    "facebookincubator/muse-gadget-sdk —— ESP32 + Linux 设备 SDK，Apache 2.0。",
 };
 
 export const SHELF_FAQ: Record<Shelf, { q: LocalText; a: LocalText }[]> = {
