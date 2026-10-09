@@ -128,7 +128,7 @@ const en: Dict = {
   typeCrumb: "Type",
   sponsorsTitle: "Sponsors",
   openSlot: "Open slot",
-  addYours: "Add yours from $99/week",
+  addYours: "Add yours from $29/week",
   browseBuilds: "Browse builds",
   officialResources: "Official resources",
   officialGadgetsTitle: "Muse Gadgets",
@@ -137,6 +137,8 @@ const en: Dict = {
   officialSdkTitle: "Gadget SDK on GitHub",
   officialSdkDesc:
     "facebookincubator/muse-gadget-sdk — ESP32 + Linux device SDKs, Apache 2.0.",
+  tierComingSoon: "Coming soon",
+  tierNewsletterPaused: "Opens after 500 subscribers",
 };
 
 const zh: Dict = {
@@ -260,7 +262,7 @@ const zh: Dict = {
   typeCrumb: "类型",
   sponsorsTitle: "赞助商",
   openSlot: "虚位以待",
-  addYours: "从 $99/周起加入",
+  addYours: "从 $29/周起加入",
   browseBuilds: "浏览案例",
   officialResources: "官方资源",
   officialGadgetsTitle: "Muse Gadgets",
@@ -269,6 +271,8 @@ const zh: Dict = {
   officialSdkTitle: "GitHub 上的 Gadget SDK",
   officialSdkDesc:
     "facebookincubator/muse-gadget-sdk —— ESP32 + Linux 设备 SDK，Apache 2.0。",
+  tierComingSoon: "即将开放",
+  tierNewsletterPaused: "500 订阅后开放",
 };
 
 export const SHELF_FAQ: Record<Shelf, { q: LocalText; a: LocalText }[]> = {

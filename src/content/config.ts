@@ -15,7 +15,7 @@ export const RESEND_AUDIENCE_ID =
   "ce836590-b3b1-49f7-8705-1a72b95b41ec";
 
 export const AD_TIERS = [
-  { id: "feed", price: 99, unit: "week" },
-  { id: "banner", price: 149, unit: "week" },
-  { id: "newsletter", price: 299, unit: "issue" },
+  { id: "feed", price: 29, unit: "week", available: true },
+  { id: "banner", price: 49, unit: "week", available: true },
+  { id: "newsletter", price: 299, unit: "issue", available: false },
 ] as const;

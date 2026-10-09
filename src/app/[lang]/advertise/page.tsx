@@ -43,20 +43,33 @@ export default async function AdvertisePage({
         {AD_TIERS.map((tier) => (
           <div
             key={tier.id}
-            className="flex flex-col rounded-[14px] border border-border bg-card p-5"
+            className={`flex flex-col rounded-[14px] border border-border bg-card p-5${
+              tier.available ? "" : " opacity-75"
+            }`}
           >
-            <h2 className="text-base font-bold text-foreground">
+            <h2 className="flex items-center gap-2 text-base font-bold text-foreground">
               {t(lang, `tier${tier.id[0].toUpperCase()}${tier.id.slice(1)}`)}
+              {!tier.available && (
+                <span className="rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground">
+                  {t(lang, "tierComingSoon")}
+                </span>
+              )}
             </h2>
             <p className="mt-2 flex-1 text-sm text-muted-foreground">
               {t(lang, `tier${tier.id[0].toUpperCase()}${tier.id.slice(1)}Desc`)}
             </p>
-            <p className="mt-4">
-              <span className="text-3xl font-extrabold text-primary">${tier.price}</span>
-              <span className="text-sm text-muted-foreground">
-                {t(lang, tier.unit === "week" ? "perWeek" : "perIssue")}
-              </span>
-            </p>
+            {tier.available ? (
+              <p className="mt-4">
+                <span className="text-3xl font-extrabold text-primary">${tier.price}</span>
+                <span className="text-sm text-muted-foreground">
+                  {t(lang, tier.unit === "week" ? "perWeek" : "perIssue")}
+                </span>
+              </p>
+            ) : (
+              <p className="mt-4 text-sm text-muted-foreground">
+                {t(lang, "tierNewsletterPaused")}
+              </p>
+            )}
           </div>
         ))}
       </section>
