@@ -10,7 +10,7 @@ import CoverArt from "./CoverArt";
 export default function CardCover({ c, lang }: { c: CaseStudy; lang: Lang }) {
   const [failed, setFailed] = useState(false);
   if (!c.image || failed) {
-    return <CoverArt shelf={c.shelf} number={c.number} lang={lang} />;
+    return <CoverArt shelf={c.shelf} number={c.number} slug={c.slug} lang={lang} />;
   }
   return (
     <img
