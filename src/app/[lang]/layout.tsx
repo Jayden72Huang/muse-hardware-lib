@@ -9,6 +9,12 @@ import { SITE_URL } from "@/content/config";
 
 const LANGS: Lang[] = ["en", "zh"];
 
+// Runs synchronously during HTML parsing, before <body> and before first
+// paint: applies the stored theme (or the OS preference on first visit) so
+// the page never flashes the wrong color scheme. A raw inline <script> is
+// used deliberately — it is parser-blocking, unlike deferred script loaders.
+const THEME_INIT = `(function(){try{var s=localStorage.getItem('mhl-theme');var d=s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',d);}catch(e){}})();`;
+
 export async function generateStaticParams() {
   return LANGS.map((lang) => ({ lang }));
 }
@@ -55,7 +61,9 @@ export default async function LangLayout({
     <html
       lang={l === "zh" ? "zh-CN" : "en"}
       className={`${figtree.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
       <body className="flex min-h-screen flex-col bg-background text-foreground">
         <Header lang={l} />
         <main id="main" className="flex-1">

@@ -1,20 +1,15 @@
 // Blueprint-style fallback cover for cases without a real thumbnail (e.g.
 // social posts whose platforms block scraping). Pure SVG line work — circuit
-// traces, a waveform, an IC outline — on a light shelf-tinted background.
+// traces, a waveform, an IC outline — on a shelf-tinted background.
 // Every pattern is seeded by the case slug, so each card gets a unique but
 // deterministic design. No emoji anywhere; decorative and kept quiet so the
 // title and author row stay the focus.
+//
+// Colors come from CSS variables (--ca-from/--ca-to/--ca-ink) defined per
+// shelf in globals.css, with dark-mode variants — the component never
+// hardcodes a theme.
 import type { Lang, Shelf } from "@/content/schema";
 import { shelfName } from "@/i18n/dict";
-
-const THEME: Record<Shelf, { from: string; to: string; ink: string }> = {
-  "smart-home": { from: "#ecfdf5", to: "#d7f2e2", ink: "#0f766e" },
-  robots: { from: "#fff7ed", to: "#ffe4cf", ink: "#c2410c" },
-  wearable: { from: "#f5f3ff", to: "#e3dcfc", ink: "#6d28d9" },
-  "dev-boards": { from: "#f0f9ff", to: "#d6ebfd", ink: "#0369a1" },
-  sensors: { from: "#f0fdfa", to: "#c6f5e8", ink: "#0e7490" },
-  displays: { from: "#fffbeb", to: "#fdecc6", ink: "#b45309" },
-};
 
 const W = 400;
 const H = 250;
@@ -104,7 +99,6 @@ export default function CoverArt({
   slug: string;
   lang: Lang;
 }) {
-  const t = THEME[shelf];
   const rand = mulberry32(hashSeed(slug || shelf));
 
   const traceCount = 2 + Math.floor(rand() * 3); // 2–4 traces
@@ -117,8 +111,8 @@ export default function CoverArt({
 
   return (
     <div
-      className="relative h-full w-full overflow-hidden"
-      style={{ background: `linear-gradient(135deg, ${t.from}, ${t.to})` }}
+      className="cover-art relative h-full w-full overflow-hidden"
+      data-shelf={shelf}
       aria-hidden
     >
       <svg
@@ -129,7 +123,7 @@ export default function CoverArt({
       >
         <defs>
           <pattern id={`bp-${slug}`} width={grid} height={grid} patternUnits="userSpaceOnUse">
-            <path d={`M${grid} 0 H0 V${grid}`} fill="none" stroke={t.ink} strokeWidth="1" strokeOpacity="0.07" />
+            <path d={`M${grid} 0 H0 V${grid}`} fill="none" stroke="var(--ca-ink)" strokeWidth="1" strokeOpacity="0.07" />
           </pattern>
         </defs>
 
@@ -138,19 +132,19 @@ export default function CoverArt({
 
         {/* circuit traces */}
         {traces.map((tr, i) => (
-          <g key={i} fill="none" stroke={t.ink} strokeWidth="1" strokeOpacity="0.32">
+          <g key={i} fill="none" stroke="var(--ca-ink)" strokeWidth="1" strokeOpacity="0.32">
             <path d={tr.d} />
             {tr.vias.map(([vx, vy], j) => (
-              <circle key={j} cx={vx} cy={vy} r="2.5" fill={t.ink} fillOpacity="0.35" stroke="none" />
+              <circle key={j} cx={vx} cy={vy} r="2.5" fill="var(--ca-ink)" fillOpacity="0.35" stroke="none" />
             ))}
           </g>
         ))}
 
         {/* waveform strip */}
-        <path d={wave} fill="none" stroke={t.ink} strokeWidth="1.25" strokeOpacity="0.34" />
+        <path d={wave} fill="none" stroke="var(--ca-ink)" strokeWidth="1.25" strokeOpacity="0.34" />
 
         {/* IC outline + pins */}
-        <g stroke={t.ink} strokeWidth="1" strokeOpacity="0.26" fill="none">
+        <g stroke="var(--ca-ink)" strokeWidth="1" strokeOpacity="0.26" fill="none">
           <rect x={cx} y={cy} width={cs} height={cs} rx="4" />
           {chipGeom.pins.map((d, i) => (
             <path key={i} d={d} />
@@ -159,7 +153,7 @@ export default function CoverArt({
         </g>
       </svg>
 
-      <span className="absolute bottom-2.5 left-3 rounded-md bg-white/80 px-2 py-0.5 text-[11px] font-medium text-foreground/80 backdrop-blur-sm">
+      <span className="absolute bottom-2.5 left-3 rounded-md bg-card/80 px-2 py-0.5 text-[11px] font-medium text-foreground/80 backdrop-blur-sm">
         {shelfName(shelf, lang)}
       </span>
       <span className="absolute bottom-2.5 right-3 font-mono text-[11px] text-foreground/50">

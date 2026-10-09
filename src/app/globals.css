@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* class-based dark mode (toggled via .dark on <html>) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: "Figtree", ui-sans-serif, system-ui, -apple-system,
     "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC",
@@ -25,6 +28,25 @@
 
 :root {
   color-scheme: light;
+}
+
+/* Dark theme: flip the semantic tokens. Unlayered, so it wins over the
+   @theme-emitted :root values regardless of specificity. */
+.dark {
+  color-scheme: dark;
+  --color-background: #0a0a0b;
+  --color-foreground: #f4f4f5;
+  --color-card: #141416;
+  --color-muted: #1b1b1e;
+  --color-muted-foreground: #a1a1aa;
+  --color-border: #27272b;
+  --color-primary: #4d94e8;
+  --color-primary-dark: #3b7fd4;
+  --color-accent: #fb7f36;
+  --color-accent-soft: #2e1d10;
+  --color-sponsor: #fbbf2421;
+  --color-sponsor-foreground: #fcd34d;
+  --color-sponsor-border: #f59e0b59;
 }
 
 html {
@@ -68,6 +90,52 @@ h3 {
   box-shadow: 0 8px 24px -12px rgb(17 17 18 / 0.18);
   border-color: #d5d5d7;
 }
+.dark .case-card:hover {
+  box-shadow: 0 10px 28px -12px rgb(0 0 0 / 0.65);
+  border-color: #3d3d44;
+}
+
+/* CoverArt blueprint covers: per-shelf gradient + ink, with dark variants.
+   The component sets data-shelf and paints from these variables. */
+.cover-art {
+  background: linear-gradient(135deg, var(--ca-from), var(--ca-to));
+}
+.cover-art[data-shelf="smart-home"] {
+  --ca-from: #ecfdf5; --ca-to: #d7f2e2; --ca-ink: #0f766e;
+}
+.cover-art[data-shelf="robots"] {
+  --ca-from: #fff7ed; --ca-to: #ffe4cf; --ca-ink: #c2410c;
+}
+.cover-art[data-shelf="wearable"] {
+  --ca-from: #f5f3ff; --ca-to: #e3dcfc; --ca-ink: #6d28d9;
+}
+.cover-art[data-shelf="dev-boards"] {
+  --ca-from: #f0f9ff; --ca-to: #d6ebfd; --ca-ink: #0369a1;
+}
+.cover-art[data-shelf="sensors"] {
+  --ca-from: #f0fdfa; --ca-to: #c6f5e8; --ca-ink: #0e7490;
+}
+.cover-art[data-shelf="displays"] {
+  --ca-from: #fffbeb; --ca-to: #fdecc6; --ca-ink: #b45309;
+}
+.dark .cover-art[data-shelf="smart-home"] {
+  --ca-from: #052a22; --ca-to: #083b2f; --ca-ink: #2dd4bf;
+}
+.dark .cover-art[data-shelf="robots"] {
+  --ca-from: #2b1608; --ca-to: #3d2110; --ca-ink: #fb923c;
+}
+.dark .cover-art[data-shelf="wearable"] {
+  --ca-from: #1c1440; --ca-to: #2b2059; --ca-ink: #a78bfa;
+}
+.dark .cover-art[data-shelf="dev-boards"] {
+  --ca-from: #081a2d; --ca-to: #0d2742; --ca-ink: #38bdf8;
+}
+.dark .cover-art[data-shelf="sensors"] {
+  --ca-from: #062b28; --ca-to: #0a3a35; --ca-ink: #22d3ee;
+}
+.dark .cover-art[data-shelf="displays"] {
+  --ca-from: #2c1f08; --ca-to: #40300e; --ca-ink: #fbbf24;
+}
 
 /* FAQ details marker */
 details.faq > summary {
@@ -93,4 +161,26 @@ details.faq[open] > summary::after {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* mobile nav drawer entrance */
+@keyframes drawer-in {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+.drawer-panel {
+  animation: drawer-in 0.25s ease-out;
+}
+@keyframes drawer-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.drawer-overlay {
+  animation: drawer-fade 0.2s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .drawer-panel,
+  .drawer-overlay {
+    animation: none;
+  }
 }

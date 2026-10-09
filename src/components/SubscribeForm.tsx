@@ -37,7 +37,7 @@ export default function SubscribeForm({ lang, compact = false }: { lang: Lang; c
         </>
       )}
       {state === "ok" ? (
-        <p className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+        <p className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
           {t(lang, "subscribeOk")}
         </p>
       ) : (
@@ -63,10 +63,10 @@ export default function SubscribeForm({ lang, compact = false }: { lang: Lang; c
         </form>
       )}
       {state === "invalid" && (
-        <p className="mt-2 text-sm text-red-600">{t(lang, "subscribeInvalid")}</p>
+        <p className="mt-2 text-sm text-red-600 dark:text-red-400">{t(lang, "subscribeInvalid")}</p>
       )}
       {state === "error" && (
-        <p className="mt-2 text-sm text-red-600">{t(lang, "subscribeFail")}</p>
+        <p className="mt-2 text-sm text-red-600 dark:text-red-400">{t(lang, "subscribeFail")}</p>
       )}
     </div>
   );

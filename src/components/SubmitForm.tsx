@@ -78,9 +78,9 @@ export default function SubmitForm({ lang }: { lang: Lang }) {
 
   if (status === "success") {
     return (
-      <div className="rounded-[14px] border border-emerald-200 bg-emerald-50 p-8">
-        <p className="text-lg font-bold text-emerald-700">{t(lang, "submitSuccessTitle")}</p>
-        <p className="mt-3 text-sm leading-relaxed text-emerald-900/80">
+      <div className="rounded-[14px] border border-emerald-200 bg-emerald-50 p-8 dark:border-emerald-800 dark:bg-emerald-950">
+        <p className="text-lg font-bold text-emerald-700 dark:text-emerald-300">{t(lang, "submitSuccessTitle")}</p>
+        <p className="mt-3 text-sm leading-relaxed text-emerald-900/80 dark:text-emerald-200/80">
           {t(lang, "submitSuccessBody")}
         </p>
       </div>
@@ -192,7 +192,7 @@ export default function SubmitForm({ lang }: { lang: Lang }) {
       </div>
 
       {status === "error" && (
-        <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-800 dark:bg-red-950 dark:text-red-300">
           {t(lang, errorKey)}
         </p>
       )}

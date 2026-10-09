@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { SHELVES, type Lang } from "@/content/schema";
 import { shelfName, t } from "@/i18n/dict";
+import ThemeToggle from "./ThemeToggle";
+import MobileNav from "./MobileNav";
+import Sidebar from "./Sidebar";
 
 function WaveMark() {
   return (
@@ -38,6 +41,9 @@ export default function Header({
         {t(lang, "skipToContent")}
       </a>
       <div className="mx-auto flex h-14 max-w-[1680px] items-center gap-2 px-3 sm:gap-4 sm:px-6">
+        <MobileNav lang={lang}>
+          <Sidebar lang={lang} />
+        </MobileNav>
         <Link
           href={`/${lang}`}
           className="flex min-w-0 shrink-0 items-center gap-2"
@@ -67,6 +73,7 @@ export default function Header({
           </Link>
         </nav>
         <div className="ml-auto flex items-center gap-2">
+          <ThemeToggle lang={lang} />
           <Link
             href={`/${other}`}
             className="rounded-md px-2 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"

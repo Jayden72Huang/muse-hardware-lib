@@ -24,7 +24,7 @@ export default function SponsoredCard({ lang }: { lang: Lang }) {
         <p className="mt-3 text-[15px] leading-[1.45] text-foreground/90">
           {t(lang, "yourAdSub")}
         </p>
-        <div className="mt-3 rounded-2xl bg-white/50 px-3 py-2.5">
+        <div className="mt-3 rounded-2xl bg-white/50 px-3 py-2.5 dark:bg-black/30">
           <p className="text-xs text-sponsor-foreground">
             <Link
               href={`/${lang}/advertise`}
