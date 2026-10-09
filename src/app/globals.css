@@ -186,3 +186,18 @@ details.faq[open] > summary::after {
 }
 
 /* rebuild-trigger: class-based dark mode (.dark on <html>) + mobile nav drawer — 2026-10-09 */
+
+/* hero ASCII mascot: gentle wiggle on hover */
+@keyframes mascot-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  30% { transform: rotate(-2.5deg); }
+  70% { transform: rotate(2.5deg); }
+}
+.mascot-wiggle:hover pre {
+  animation: mascot-wiggle 0.6s ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mascot-wiggle:hover pre {
+    animation: none;
+  }
+}

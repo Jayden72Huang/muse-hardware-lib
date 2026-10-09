@@ -8,6 +8,7 @@ import SponsoredCard from "@/components/SponsoredCard";
 import SubscribeForm from "@/components/SubscribeForm";
 import FilterBar from "@/components/FilterBar";
 import OfficialCard from "@/components/OfficialCard";
+import AsciiMascot from "@/components/AsciiMascot";
 import { CategoryNav } from "@/components/Header";
 
 import { SITE_URL } from "@/content/config";
@@ -119,17 +120,20 @@ export default async function HomePage({
             <p className="mb-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
               {t(lang, "officialResources")}
             </p>
-            <div className="grid gap-3">
-              {OFFICIAL_LINKS.map((l) => (
-                <OfficialCard
-                  key={l.href}
-                  href={l.href}
-                  image={l.image}
-                  title={t(lang, l.titleKey)}
-                  desc={t(lang, l.descKey)}
-                  domain={l.domain}
-                />
-              ))}
+            <div className="flex items-center gap-5">
+              <AsciiMascot />
+              <div className="grid min-w-0 flex-1 gap-3">
+                {OFFICIAL_LINKS.map((l) => (
+                  <OfficialCard
+                    key={l.href}
+                    href={l.href}
+                    image={l.image}
+                    title={t(lang, l.titleKey)}
+                    desc={t(lang, l.descKey)}
+                    domain={l.domain}
+                  />
+                ))}
+              </div>
             </div>
           </aside>
         </div>
