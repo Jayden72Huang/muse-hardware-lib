@@ -184,3 +184,5 @@ details.faq[open] > summary::after {
     animation: none;
   }
 }
+
+/* rebuild-trigger: class-based dark mode (.dark on <html>) + mobile nav drawer — 2026-10-09 */
