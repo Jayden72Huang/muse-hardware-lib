@@ -90,7 +90,7 @@ export default async function HomePage({
       />
       {/* Hero — two columns: headline + CTAs | official resources */}
       <section className="border-b border-border">
-        <div className="mx-auto grid max-w-[1680px] gap-10 px-3 py-10 sm:px-6 sm:py-14 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-center">
+        <div className="mx-auto grid max-w-[1680px] gap-10 px-3 py-10 sm:px-6 sm:py-14 lg:grid-cols-[minmax(0,1fr)_600px] lg:items-center">
           <div>
             <h1 className="max-w-[18ch] text-balance text-[clamp(2.5rem,5vw,4rem)] font-medium leading-[1] tracking-[-0.03em] text-foreground">
               <span className="tabular-nums">{cases.length}</span>{" "}
@@ -116,7 +116,7 @@ export default async function HomePage({
               </Link>
             </div>
           </div>
-          <aside aria-label={t(lang, "officialResources")}>
+          <aside aria-label={t(lang, "officialResources")} className="min-w-0">
             <p className="mb-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
               {t(lang, "officialResources")}
             </p>

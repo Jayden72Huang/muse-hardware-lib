@@ -48,7 +48,7 @@ export default function AsciiMascot() {
     >
       <pre
         aria-hidden="true"
-        className="font-mono text-[8px] leading-[1.08] text-foreground dark:invert"
+        className="font-mono text-[8px] leading-[1.08] text-foreground"
       >
         {ART}
       </pre>
