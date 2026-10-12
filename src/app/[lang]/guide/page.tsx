@@ -234,7 +234,7 @@ export default async function GuidePage({
                   <h2 className="text-xl font-bold text-foreground">{s.heading[lang]}</h2>
                   <Link
                     href={`/${lang}/categories/${s.shelf}`}
-                    className="shrink-0 font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
+                    className="shrink-0 whitespace-nowrap font-mono text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {lang === "zh" ? "看全部分类 →" : "Browse shelf →"}
                   </Link>
