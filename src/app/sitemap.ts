@@ -51,6 +51,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       });
     }
 
+    for (const page of ["guide", "devices/esp32", "devices/raspberry-pi"]) {
+      urls.push({
+        url: `${SITE_URL}/${lang}/${page}`,
+        lastModified: today,
+        changeFrequency: "weekly",
+        priority: 0.8,
+      });
+    }
+
     for (const c of cases) {
       urls.push({
         url: `${SITE_URL}/${lang}/builds/${c.slug}`,

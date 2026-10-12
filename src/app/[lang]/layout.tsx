@@ -28,18 +28,18 @@ export async function generateMetadata({
   const path = `/${lang}`;
   return lang === "zh"
     ? {
-        title: "Muse 硬件案例库 — 用 Muse 做出来的真实硬件",
+        title: "Muse 硬件项目案例库 — 用 Muse 做出来的真实硬件",
         description:
-          "收录社区用 Meta Muse 打造的硬件项目：ESP32、M5Stack、树莓派、墨水屏、智能家居、机器人。案例、教程、购买指南。",
+          "收录社区用 Meta Muse 打造的 Muse 硬件项目：ESP32、M5Stack、树莓派、墨水屏、智能家居、机器人。案例、教程、购买指南。",
         alternates: {
           canonical: `${SITE_URL}${path}`,
           languages: { en: `${SITE_URL}/en`, zh: `${SITE_URL}/zh` },
         },
       }
     : {
-        title: "Muse Hardware Library — Real Hardware Built with Muse",
+        title: "Muse Hardware Library — Muse Gadget Projects & Real Hardware Builds",
         description:
-          "Community hardware projects built with Meta Muse: ESP32, M5Stack, Raspberry Pi, e-ink displays, smart home, robots. Cases, tutorials, buying guides.",
+          "Community muse gadget projects and real hardware built with Meta Muse: ESP32, M5Stack, Raspberry Pi, e-ink displays, smart home, robots. Cases, tutorials, buying guides.",
         alternates: {
           canonical: `${SITE_URL}${path}`,
           languages: { en: `${SITE_URL}/en`, zh: `${SITE_URL}/zh` },

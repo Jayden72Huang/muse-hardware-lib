@@ -16,6 +16,15 @@
 - [Sensors / 传感器](https://muse-hardware-lib.vercel.app/en/categories/sensors): Giving Muse senses — temperature, motion, air quality.
 - [Displays & E-Ink / 显示与墨水屏](https://muse-hardware-lib.vercel.app/en/categories/displays): E-ink status screens, AMOLED faces, morning-briefing displays.
 
+## Guides
+
+- [What can you build? (English)](https://muse-hardware-lib.vercel.app/en/guide): Idea guide — six things to build with Muse gadgets, with real community examples.
+- [用 Muse 能做什么硬件？（中文）](https://muse-hardware-lib.vercel.app/zh/guide): 灵感指南——六大类可做的事，每类附真实案例。
+- [Muse ESP32 projects (English)](https://muse-hardware-lib.vercel.app/en/devices/esp32): Community ESP32 builds — pocket agents, wearables, SDK ports.
+- [Muse ESP32 项目（中文）](https://muse-hardware-lib.vercel.app/zh/devices/esp32): 社区 ESP32 构建合集。
+- [Muse Raspberry Pi projects (English)](https://muse-hardware-lib.vercel.app/en/devices/raspberry-pi): Server-side builds on Raspberry Pi — a growing collection.
+- [Muse 树莓派项目（中文）](https://muse-hardware-lib.vercel.app/zh/devices/raspberry-pi): 树莓派构建合集（持续收录中）。
+
 ## Build sources by type
 
 - [GitHub open source](https://muse-hardware-lib.vercel.app/en/type/github): Code-first builds you can clone and flash.
